@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Linsoft Chatbot</title>
+        <style>
+       body {
+            background: rgba(250, 242, 242, 0.158);
+        }
+        .container {
+            border: 2px solid rgb(174, 187, 212);
+            height: 210px;
+            width: 65%;
+            padding: 5px;
+            margin-top: 2px;
+            margin-left: 1px;
+            border-radius: 5px;
+        }
+ 
+        .container img {
+            margin-left: 1px;
+            width: 35%;
+            height: 97%;
+            padding: 2px;
+            border-radius: 7px;
+        }
+ 
+        span {
+          margin-left: 80px;
+            width: 60%;
+            padding: 1px;
+            font-size: 60px;
+            color: rgb(245, 33, 5);
+            vertical-align: 128%;
+        }
+        .container2 {
+            display: flex;
+            flex-direction: column;   
+        }
+         .container2 img {
+            width: 60%;
+            height:400px;
+            padding: 2px;
+            margin-left: 2px;
+        }
+        </style>
+    </head>
+    <body>
+          <div class="container">
+            <img src="dist/img/linsoft.png" alt="image-2" />
+            <span>Linsoft-Bot</span>
+        </div>
+        <div class="container2"><img src="dist/img/chatbot.jpg" alt="image-2" /></div>
+        <script>!(function () {
+            let e = document.createElement("script"),
+              t = document.head || document.getElementsByTagName("head")[0];
+            (e.src =
+              "https://cdn.jsdelivr.net/npm/rasa-webchat@1.0.1/lib/index.js"),
+              // Replace 1.x.x with the version that you want
+              (e.async = !0),
+              (e.onload = () => {
+                window.WebChat.default(
+                  {
+                    title: "Bienvenue cher client",
+                    initPayload: "/bot_challenge",
+                    customData: { language: "fr" },
+                    socketUrl: "http://0.0.0.0:5005",
+                    // add other props here
+                  },
+                  null
+                );
+              }),
+              localStorage.clear(),
+              t.insertBefore(e, t.firstChild);
+          })();
+          </script>
+
+    </body>
+</html>

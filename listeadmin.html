@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Liste admins</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- jsGrid -->
+  <link rel="stylesheet" href="plugins/jsgrid/jsgrid.min.css">
+  <link rel="stylesheet" href="plugins/jsgrid/jsgrid-theme.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+   <!-- Navbar -->
+   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+    </ul>
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+     
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index.html" class="brand-link">
+      <img src="dist/img/linsoft.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">LinSoft</span>
+    </a>
+
+    <!-- Sidebar -->
+   <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img src="dist/img/admin-icon.jpg" class="img-circle elevation-2" alt="User Image">
+      </div>
+      <div class="info">
+        <a href="#" class="d-block">Admins</a>
+      </div>
+    </div>
+
+  <!-- Sidebar Menu -->
+  <nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <!-- Add icons to the links using the .nav-icon class
+           with font-awesome or any other icon font library -->
+ 
+      <li class="nav-item">
+        <a href="listeadmin.html" class="nav-link">
+          <i class="nav-icon fas fa-users"></i>
+          <p>
+            Admins
+            <span class="right badge badge-danger"></span>
+          </p>
+        </a>
+      </li>
+    
+ 
+      <li class="nav-item">
+        <a href="listechat.html" class="nav-link">
+          <i class="fab fa-facebook-messenger""></i>
+          <p>
+            Chats
+            <span class="right badge badge-danger"></span>
+          </p>
+        </a>
+      </li>
+    
+  
+     
+    </ul>
+  </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="row">
+        <div class="col-12">
+            <div class="card-header">
+              <h1>Liste des admins</h1>
+              <div class="card-tools">
+                <a href="addadmin.html" class="nav-link">
+                  <i style="color :red" class="fas fa-plus">Ajouter admin</i>
+                </a>
+               
+              </div>
+           
+            </div>
+    </section>
+
+    <!-- Main content -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <!-- /.card-header -->
+          <div class="card-body table-responsive p-0">
+          
+            <table id="listeadmin" class="table table-hover text-nowrap">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Nom</th>
+                  <th>Prenom</th>
+                  <th>Email</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+            
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <strong>Copyright &copy;2022-2023</strong> Tous les droits sont réservés
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<script>
+  function deleteAdmin(btn) {
+    var ligne = btn.parentNode.parentNode;
+    var adminId = ligne.getAttribute("id");
+  
+    // Send a DELETE request to your server-side API
+    var xhr = new XMLHttpRequest();
+    xhr.open('DELETE', 'http://127.0.0.1:3000/admins/' + adminId, true);
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        // Deletion successful
+        location.reload(); // Reload the page to reflect the changes
+      } else {
+        // Handle deletion error
+        console.log('Error deleting the admin');
+      }
+    };
+    xhr.send();
+  }
+</script>
+
+
+<script>
+  // Create a request variable and assign a new XMLHttpRequest object to it.
+  var request = new XMLHttpRequest()
+  // Open a new connection, using the GET request on the URL endpoint
+  request.open('GET', 'http://127.0.0.1:3000/admins', true)
+  request.onload = function()
+  {
+  // Begin accessing JSON data here
+  var data = JSON.parse(this.response)
+  var table = document.getElementById("listeadmin");
+  console.log(data);
+  var j = 1;
+  data.forEach(i => {
+  console.log(i._id);
+  var row = table.insertRow(-1);
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  var cell3 = row.insertCell(2);
+  var cell4 = row.insertCell(3);
+  var cell5 = row.insertCell(4);
+
+cell1.innerHTML = j;
+cell2.innerHTML = i.nom;
+cell3.innerHTML = i.prenom;
+cell4.innerHTML = i.email;
+cell5.innerHTML = `
+<i style="color : orange;" class="fas fa-pen"> </i>
+<a href="#" onclick="deleteAdmin(this)"><i style="color: red;" class="fas fa-trash"></i></a>`;
+j = j + 1 ;
+})
+}
+// Send request
+request.send()
+</script>
+
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- jsGrid -->
+<script src="plugins/jsgrid/demos/db.js"></script>
+<script src="plugins/jsgrid/jsgrid.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#jsGrid1").jsGrid({
+        height: "100%",
+        width: "100%",
+
+        sorting: true,
+        paging: true,
+
+        data: db.admins,
+
+        fields: [
+            { name: "Nom", type: "text", width: 50 },
+            { name: "Prenom", type: "text", width: 50 },
+            { name: "Email", type: "email", width: 50 },
+            { name: "Mot de passe", type: "password", width: 200 },
+            
+        ]
+    });
+  });
+</script>
+</body>
+</html>
