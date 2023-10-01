@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ajouter chat</title>
+  <title>Ajouter Certification</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -65,10 +65,10 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="dist/img/qsrp.png" class="img-circle elevation-2" alt="User Image">
+        <img src="dist/img/certificate.jpg" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Chat</a>
+        <a href="#" class="d-block">Certification</a>
       </div>
     </div>
 
@@ -88,7 +88,6 @@
         </a>
       </li>
 
-      
       <li class="nav-item">
         <a href="listechat.html" class="nav-link">
           <i class="fab fa-facebook-messenger""></i>
@@ -98,12 +97,11 @@
           </p>
         </a>
       </li>
-    
+
  
-   
       <li class="nav-item">
         <a href="listecertif.html" class="nav-link">
-          <i class="fas fa-certificate""></i>
+          <i class="fab fa-facebook-messenger""></i>
           <p>
             Certifications
             <span class="right badge badge-danger"></span>
@@ -128,7 +126,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Ajouter chat</h1>
+            <h1>Ajouter Certification</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -142,35 +140,36 @@
 
             <div class="card card-success">
               <div class="card-header" style="background-color: red;">
-                <h3 class="card-title">Nouveau chat </h3>
+                <h3 class="card-title">Nouveau certification </h3>
               </div>
               <div class="card-body">
+        
                 <div class="form-group">
-                  <label>Client:</label>
+                  <label>Réference</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="far fa-user"></i></span>
                     </div>
-                    <input id="question" type="text" placeholder="Saisir question" class="form-control">
+                    <input id="reference" type="text" placeholder="Saisir réference" class="form-control">
                   </div>
                   <!-- /.input group -->
                 </div>
-
                 <div class="form-group">
-                  <label>Bot</label>
+                  <label>Nom de certification</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="far fa-user"></i></span>
                     </div>
-                    <input id="reponse" type="text" placeholder="Saisir reponse" class="form-control">
+                    <input id="certif" type="text" placeholder="Saisir certification" class="form-control">
                   </div>
                   <!-- /.input group -->
                 </div>
 
+              
                 <div class="form-group">
                   <div class="input-group">
                   
-                    <input onclick="add();" type="submit" class="form-control" value="Ajouter chat" >
+                    <input onclick="add();" type="submit" class="form-control" value="Ajouter certification" >
                   </div>
                   <!-- /.input group -->
                 </div>
@@ -201,30 +200,30 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- Fonction add chat-->
+<!-- Fonction add certif-->
 <script>
   function add(){
-  var url = "http://127.0.0.1:3000/chats";
+  var url = "http://127.0.0.1:3000/certifs";
   var data = {};
 
-  data.question = document.getElementById("question").value;
+  data.reference = document.getElementById("reference").value;
 
-  data.reponse = document.getElementById("reponse").value;
+  data.certif = document.getElementById("certif").value;
   
   var json = JSON.stringify(data);
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
   xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
   xhr.onload = function () {
-  var chats= JSON.parse(xhr.responseText);
+  var certifs= JSON.parse(xhr.responseText);
   if (xhr.readyState == 4 && xhr.status == "200") {
-  console.table(chats);
-  alert("Question / réponse ajoutée ");
-  location.replace("listechat.html");
+  console.table(certifs);
+  alert("Certiication ajoutée");
+  location.replace("listecertif.html");
   } else {
 
-    alert(chats.message);
-console.table(chats);
+    alert(certifs.message);
+console.table(certifs);
 }
 }
 xhr.send(json);
