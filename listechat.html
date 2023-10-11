@@ -162,8 +162,11 @@
 <script>
   // Create a request variable and assign a new XMLHttpRequest object to it.
   var request = new XMLHttpRequest()
+
+  var urlchat = "http://127.0.0.1:3000/chats";
+
   // Open a new connection, using the GET request on the URL endpoint
-  request.open('GET', 'http://127.0.0.1:3000/chats', true)
+  request.open('GET', urlchat, true)
   request.onload = function()
   {
   // Begin accessing JSON data here

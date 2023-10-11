@@ -218,7 +218,7 @@
 <!-- Fonction add admin-->
 <script>
   function add(){
-  var url = "http://127.0.0.1:3000/admins";
+  var urladmin = "http://127.0.0.1:3000/admins";
   var data = {};
   data.nom = document.getElementById("nom").value;
   data.prenom = document.getElementById("prenom").value;
@@ -227,7 +227,7 @@
 
   var json = JSON.stringify(data);
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", url, true);
+  xhr.open("POST", urladmin, true);
   xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
   xhr.onload = function () {
   var admins= JSON.parse(xhr.responseText);

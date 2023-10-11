@@ -204,7 +204,7 @@
 <!-- Fonction add chat-->
 <script>
   function add(){
-  var url = "http://127.0.0.1:3000/chats";
+  var urlchat = "http://127.0.0.1:3000/chats";
   var data = {};
 
   data.question = document.getElementById("question").value;
@@ -213,7 +213,7 @@
   
   var json = JSON.stringify(data);
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", url, true);
+  xhr.open("POST", urlchat, true);
   xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
   xhr.onload = function () {
   var chats= JSON.parse(xhr.responseText);

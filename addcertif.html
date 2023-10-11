@@ -203,7 +203,7 @@
 <!-- Fonction add certif-->
 <script>
   function add(){
-  var url = "http://127.0.0.1:3000/certifs";
+  var urlcertif = "http://127.0.0.1:3000/certifs";
   var data = {};
 
   data.reference = document.getElementById("reference").value;
@@ -212,7 +212,7 @@
   
   var json = JSON.stringify(data);
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", url, true);
+  xhr.open("POST", urlcertif, true);
   xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
   xhr.onload = function () {
   var certifs= JSON.parse(xhr.responseText);
